@@ -19,7 +19,7 @@ async function main() {
 }
 
 const chaineSchema = new mongoose.Schema({
-  libelle: String,
+  libelle: { type: String },
   regie: { type: mongoose.Schema.Types.ObjectId, ref: "regies" },
 });
 const Chaines = mongoose.model("Chaine", chaineSchema, "chaines");
@@ -65,4 +65,6 @@ async function runTest() {
   }
 }
 
-main();
+// main();
+
+module.exports = { Chaines, Regies };
