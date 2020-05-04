@@ -34,11 +34,12 @@ app.post("/chaines", async (req, res) => {
     );
     regie.chaines.push(newChaine);
     await regie.save({ session });
-    session.commitTransaction();
+    await session.commitTransaction();
     session.endSession();
     res.status(201).send({ regie });
   } catch (error) {
-    session.abort;
+    await session.abortTransaction();
+    session.endSession();
     res.send({ error: error });
   }
 });
