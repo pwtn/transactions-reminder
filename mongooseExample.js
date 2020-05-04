@@ -1,7 +1,5 @@
 // load packages
 const mongoose = require("mongoose");
-// for currency calculation handling
-const $ = require("currency");
 
 // the run-rs command will by default start the replica sets on the following ports
 const uri = require("./config").mongoUri;
@@ -78,6 +76,7 @@ async function handleMoneyTransfer(senderAccountId, receiveAccountId, amount) {
   } finally {
     // ending the session
     session.endSession();
+    mongoose.disconnect();
   }
 }
 
